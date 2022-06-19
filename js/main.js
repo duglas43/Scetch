@@ -59,11 +59,6 @@ function updateArea(shape=16){
         }
     }
     container.onclick=(e)=>{if (e.target.classList.contains("box")) e.target.style.backgroundColor=currentColor();}
-    container.onpointerdown=(e)=>{
-        console.log(e)
-        e.preventDefault();
-        if (e.target.classList.contains("box")) e.target.style.backgroundColor=currentColor();
-    }
     container.ontouchmove=(e)=>{
         if (e.target.classList.contains("box")) e.target.style.backgroundColor=currentColor();
     }
