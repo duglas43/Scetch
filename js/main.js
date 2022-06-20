@@ -3,6 +3,7 @@ const range__mode=document.querySelector(".range__mode"),//Ползунок
       color__input=document.querySelector(".color__input"),
       color__btn=document.querySelector(".color__btn"),
       eraser__btn=document.querySelector(".eraser__btn"),
+      random__btn=document.querySelector(".random__btn"),
       clear__btn=document.querySelector(".clear__btn"),
       area=document.querySelector(".area");
 
@@ -23,6 +24,7 @@ function activateBtn(btn){
     color__btn.classList.remove("active");
     eraser__btn.classList.remove("active");
     clear__btn.classList.remove("active");
+    random__btn.classList.remove("active");
     btn.classList.add("active");
 }
 // Показать активную кнопку
@@ -30,12 +32,14 @@ function activeBtn(){
     if(color__btn.classList.contains("active")) return "color__btn"
     else if(eraser__btn.classList.contains("active")) return "eraser__btn"
     else if (clear__btn.classList.contains("active")) return "clear__btn"
+    else if (random__btn.classList.contains("active")) return "random__btn"
     else return;
 }
 // Возвращает нужное значение цвета
 function currentColor(){
     if(activeBtn()=="color__btn") return (color__input.value)
     else if(activeBtn()=="eraser__btn") return("#FFFFFF")
+    else if(activeBtn()=="random__btn") return(`rgb(${Math.floor(Math.random()*255)},${Math.floor(Math.random()*255)},${Math.floor(Math.random()*255)}`)
 }
 // Обновить размер поля
 function updateArea(shape=16){
@@ -59,9 +63,12 @@ function updateArea(shape=16){
         }
     }
     container.onclick=(e)=>{if (e.target.classList.contains("box")) e.target.style.backgroundColor=currentColor();}
-    container.ontouchmove=(e)=>{
-        if (e.target.classList.contains("box")) e.target.style.backgroundColor=currentColor();
-    }
+
+    // container.onpointermove=(e)=>{
+    //     e.preventDefault();
+    //     e.target.style.backgroundColor=currentColor();
+    //     console.log(e.clientX)
+    // }
 }
 updateArea()
 // Прослушиватели
@@ -78,10 +85,11 @@ color__btn.onclick=()=>{
 range__mode.onchange=()=>{
     updateArea(range__mode.value)
 }
+random__btn.onclick=()=>{
+    activateBtn(random__btn);
+}
 document.onmousedown=()=>{mouse=true}
 document.onmouseup=()=>{mouse=false}
-document.getElementsByClassName("container")
-
 
 
 
