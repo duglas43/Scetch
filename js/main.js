@@ -1,5 +1,5 @@
 "use strict";
-const range__mode=document.querySelector(".range__mode"),//Ползунок
+const range__mode=document.querySelector(".range__mode"),
       color__input=document.querySelector(".color__input"),
       color__btn=document.querySelector(".color__btn"),
       eraser__btn=document.querySelector(".eraser__btn"),
